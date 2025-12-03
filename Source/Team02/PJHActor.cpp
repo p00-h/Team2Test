@@ -14,7 +14,6 @@ APJHActor::APJHActor()
 // Called when the game starts or when spawned
 void APJHActor::BeginPlay()
 {
-	Super::BeginPlay();
 	
 }
 

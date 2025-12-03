@@ -2,26 +2,41 @@
 
 
 #include "PJHActor.h"
+#include "../Team02/KWON/KIHActor.h"
 
-// Sets default values
 APJHActor::APJHActor()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
 
+    CollisionBox = CreateDefaultSubobject<UBoxComponent>(TEXT("CollisionBox"));
+    RootComponent = CollisionBox;
+    CollisionBox->SetBoxExtent(FVector(50.f, 50.f, 50.f)); 
+    CollisionBox->SetCollisionProfileName(TEXT("Trigger")); 
 }
 
-// Called when the game starts or when spawned
 void APJHActor::BeginPlay()
 {
-	Super::BeginPlay();
+<<<<<<< HEAD
+    Super::BeginPlay();
+
+    CollisionBox->OnComponentBeginOverlap.AddDynamic(this, &APJHActor::OnOverlapBegin);
+=======
 	
+>>>>>>> 8a9755cf3f502dbf4452cc843709bf1232d90fac
 }
 
-// Called every frame
-void APJHActor::Tick(float DeltaTime)
+void APJHActor::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	Super::Tick(DeltaTime);
+  
+    if (OtherActor && (OtherActor != this))
+    {
 
+        AKIHActor* TargetKIH = Cast<AKIHActor>(OtherActor);
+
+        if (TargetKIH)
+        {
+
+            UE_LOG(LogTemp, Warning, TEXT("PJH: KIH를 발견했다!"));
+            TargetKIH->PrintHelloFromPJH();
+        }
+    }
 }
-

@@ -14,4 +14,5 @@ class TEAM02_API AKWJActor : public AActor
 public:	
 	AKWJActor();
 
+	void BeginPlay() override;
 };

@@ -9,4 +9,9 @@ AKWJActor::AKWJActor()
 
 }
 
+void AKWJActor::BeginPlay()
+{
+	Super::BeginPlay();
+}
+
 
